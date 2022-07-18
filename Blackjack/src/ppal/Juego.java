@@ -6,14 +6,29 @@ import modelo.Mano;
 import modelo.Mazo;
 
 public class Juego {
-
+	
+	
 	public static void main(String[] args) {
 
 		Mazo mazo = new Mazo();
 		Mano jugador = new Mano();
+		Mano banca = new Mano();
 		
 		System.out.println("Barajando carta...");
 		mazo.barajar();
+		
+		System.out.println("Repartiendo cartas iniciales...");
+		jugador.pedirCarta(mazo);
+		System.out.println("Jugador: "+jugador);
+		
+		banca.pedirCarta(mazo);
+		System.out.println("Banca: "+banca);
+		
+		jugador.pedirCarta(mazo);
+		System.out.println("Jugador: "+jugador);
+		
+		banca.pedirCarta(mazo,false);
+		System.out.println("Banca: "+banca);
 		
 		Scanner entrada = new Scanner(System.in);
 		int opcion;
@@ -28,8 +43,10 @@ public class Juego {
 		
 	}while (opcion!=0 && !jugador.finDeJuego());
 		
-	Mano banca = new Mano();
+	// Mano banca = new Mano();
 	System.out.println("Juega la banca...");
+	banca.descubrir();
+	System.out.println("cartas de la banca: "+banca);
 	
 	if (jugador.valorMano()>21) {
 		System.out.println("Gana la Banca");
